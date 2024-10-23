@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/dimi_chang_dong.iml" filepath="$PROJECT_DIR$/dimi_chang_dong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/dimi_chang_dong_android.iml" filepath="$PROJECT_DIR$/android/dimi_chang_dong_android.iml" />
     </modules>
   </component>
 </project>

@@ -4,20 +4,20 @@ class DescriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, // Number of tabs
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFF4F4F4), // AppBar 배경색 설정
+          backgroundColor: Color(0xFFF4F4F4),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black), // 검은색 아이콘
+            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          elevation: 0, // 그림자 제거
+          elevation: 0,
         ),
         body: Container(
-          color: Color(0xFFF4F4F4), // Body 배경색 설정
+          color: Color(0xFFF4F4F4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -26,8 +26,8 @@ class DescriptionPage extends StatelessWidget {
                 width: 300,
                 height: 300,
                 decoration: BoxDecoration(
-                  color: Color(0xFF939393), // Placeholder for image
-                  borderRadius: BorderRadius.circular(24), // 모서리 둥글기 24로 수정
+                  color: Color(0xFF939393),
+                  borderRadius: BorderRadius.circular(24),
                 ),
               ),
               SizedBox(height: 10),
@@ -124,18 +124,20 @@ class DescriptionPage extends StatelessWidget {
 
   Widget _buildTag(String text) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4.0),
+      margin: EdgeInsets.only(right: 8.0),
       padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
       decoration: BoxDecoration(
-        color: Color(0xFF0044FF),
+        color: Colors.white,
+        border: Border.all(color: Color(0xFF0044FF)),
         borderRadius: BorderRadius.circular(24),
       ),
+
       child: Text(
         text,
         style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w800,
-          color: Colors.white,
+          color: Color(0xFF0044FF),
         ),
       ),
     );

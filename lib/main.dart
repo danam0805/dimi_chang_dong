@@ -51,7 +51,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         backgroundColor: Color(0xFFF4F4F4),
         title: Row(
           children: [
-            // Container for text input
+
             Expanded(
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 0),
@@ -70,25 +70,25 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                         ),
                         style: TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.w500, // medium font weight
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
                     Icon(
                       Icons.search,
-                      color: Color(0xFF0044FF), // Set the color to #0044FF
-                      size: 24, // Set the size to 24x24
+                      color: Color(0xFF0044FF),
+                      size: 24,
                     ),
                   ],
                 ),
               ),
             ),
-            // Add an image icon with padding on the left
+
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Image.asset(
                 'img/bell.png',
-                width: 33, // You can adjust the size as needed
+                width: 33,
                 height: 34,
               ),
             ),
@@ -98,10 +98,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       body: TabBarView(
         controller: _tabController,
         children: [
-          buildHomeTab(), // Home Tab
-          buildCommunityTab(), // Community Tab
-          buildWritingTab(), // 빈 페이지 (Writing Page)
-          buildProfileTab(), // 빈 페이지 (Profile Page)
+          buildHomeTab(),
+          buildCommunityTab(),
+          buildWritingTab(),
+          buildProfileTab(),
         ],
       ),
       bottomNavigationBar: Container(
@@ -148,18 +148,20 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   Widget _buildTag(String text) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4.0),
+      margin: EdgeInsets.only(right: 8.0),
       padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
       decoration: BoxDecoration(
-        color: Color(0xFF0044FF),
+        color: Colors.white,
+        border: Border.all(color: Color(0xFF0044FF)),
         borderRadius: BorderRadius.circular(24),
       ),
+
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 10,
           fontWeight: FontWeight.w800,
-          color: Colors.white,
+          color: Color(0xFF0044FF),
         ),
       ),
     );
@@ -168,15 +170,20 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   Widget buildWritingTab() {
     return Scaffold(
       body: Center(
-        child: Text(
-          'This is the Writing Page',
-          style: TextStyle(fontSize: 24),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WritingPage()),
+            );
+          },
         ),
       ),
     );
   }
 
-  // Profile Page UI implementation
+
+
   Widget buildProfileTab() {
     return Scaffold(
       body: Center(
@@ -188,7 +195,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     );
   }
 
-  // Home Tab UI implementation
   Widget buildHomeTab() {
     return CustomScrollView(
       slivers: [
@@ -285,7 +291,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       },
                       child: Container(
                         width: double.infinity,
-                        height: 160,
+                        height: 114,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -294,7 +300,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 21.0, horizontal: 16.0),
+                          padding: EdgeInsets.only(top: 15.0, bottom: 21.0, right: 16.0, left: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -305,7 +311,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Spacer(),
                               Text(
                                 '8/9 ~ 8/11',
                                 style: TextStyle(
@@ -314,52 +319,13 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Spacer(),
-                              Column( // Text와 원들이 세로로 쌓이도록 변경
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [ // Text와 원 사이의 간격
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(Icons.people_outline, color: Colors.grey),
-                                          SizedBox(width: 6),
-                                          Text.rich(
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: '인원', // "인원" 텍스트
-                                                  style: TextStyle(
-                                                    color: Colors.black, // 검은색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: ' 4~6', // "4~6" 텍스트
-                                                  style: TextStyle(
-                                                    color: Colors.pinkAccent, // 핑크색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 8),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          _buildTag('개발'), // "개발" 태그
-                                          _buildTag('디자인'), // "디자인" 태그
-                                          _buildTag('기획'), // "기획" 태그
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                              SizedBox(height: 2.0),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  _buildTag('개발'),
+                                  _buildTag('디자인'),
+                                  _buildTag('기획'),
                                 ],
                               ),
                             ],
@@ -394,7 +360,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       },
                       child: Container(
                         width: double.infinity,
-                        height: 160,
+                        height: 114,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -403,7 +369,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 21.0, horizontal: 16.0),
+                          padding: EdgeInsets.only(top: 15.0, bottom: 21.0, right: 16.0, left: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -414,7 +380,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Spacer(),
                               Text(
                                 '8/9 ~ 8/11',
                                 style: TextStyle(
@@ -423,52 +388,13 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Spacer(),
-                              Column( // Text와 원들이 세로로 쌓이도록 변경
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [ // Text와 원 사이의 간격
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(Icons.people_outline, color: Colors.grey),
-                                          SizedBox(width: 6),
-                                          Text.rich(
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: '인원', // "인원" 텍스트
-                                                  style: TextStyle(
-                                                    color: Colors.black, // 검은색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: ' 4~6', // "4~6" 텍스트
-                                                  style: TextStyle(
-                                                    color: Colors.pinkAccent, // 핑크색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 8),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          _buildTag('개발'), // "개발" 태그
-                                          _buildTag('디자인'), // "디자인" 태그
-                                          _buildTag('기획'), // "기획" 태그
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                              SizedBox(height: 2.0),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  _buildTag('개발'),
+                                  _buildTag('디자인'),
+                                  _buildTag('기획'),
                                 ],
                               ),
                             ],
@@ -488,7 +414,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   Widget buildCommunityTab() {
     return DefaultTabController(
-      length: 3, // 자유 커뮤니티, 지식 나눔, 인력 구인 3개 탭
+      length: 3,
       child: Column(
         children: [
           TabBar(
@@ -500,19 +426,19 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               Tab(
                 child: Text(
                   '자유 커뮤니티',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600), // semi bold
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                 ),
               ),
               Tab(
                 child: Text(
                   '지식 나눔',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600), // semi bold
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                 ),
               ),
               Tab(
                 child: Text(
                   '인력 구인',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600), // semi bold
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -531,12 +457,11 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     );
   }
 
-  // 자유 커뮤니티 탭 내용
+
   Widget buildFreeCommunityTab() {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // Image placeholder
           Padding(
             padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 8),
             child: Container(
@@ -549,18 +474,17 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             ),
           ),
 
-          // List of posts
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: 3, // Number of posts to show
+            itemCount: 3,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Card(
-                  color: Colors.white, // Card background color set to white
+                  color: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0), // Setting border radius to 0
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -585,9 +509,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 ),
                                 SizedBox(width: 3),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.center, // Center align
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(height: 2), // Adjust vertical alignment
+                                    SizedBox(height: 2),
                                     Text(
                                       '방금',
                                       style: TextStyle(
@@ -607,7 +531,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           '내일 축제 같이 즐길 사람 구해요...!',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.w600, // semi bold
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         SizedBox(height: 3),
@@ -615,7 +539,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           '내일 축제 때 같이 다닐 사람 구해요..! 맛있는거 많이 사드릴게요!',
                           style: TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w500, // semi bold
+                            fontWeight: FontWeight.w500,
                             color: Color(0xFF939393),
                           ),
                         ),
@@ -657,12 +581,11 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       ),
     );
   }
-  // 지식 나눔 탭 내용
+
   Widget buildKnowledgeSharingTab() {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // Image placeholder
           Padding(
             padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 8),
             child: Container(
@@ -675,18 +598,17 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             ),
           ),
 
-          // List of posts
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: 3, // Number of posts to show
+            itemCount: 3,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Card(
-                  color: Colors.white, // Card background color set to white
+                  color: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0), // Setting border radius to 0
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -711,9 +633,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 ),
                                 SizedBox(width: 3),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.center, // Center align
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(height: 2), // Adjust vertical alignment
+                                    SizedBox(height: 2),
                                     Text(
                                       '방금',
                                       style: TextStyle(
@@ -733,7 +655,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           '아니 리액트 store에 이거 어케하는데',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.w600, // semi bold
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         SizedBox(height: 3),
@@ -741,7 +663,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           '잉 리액트 너무 어려워잉ㅠㅠㅠㅠㅠㅠ',
                           style: TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w500, // semi bold
+                            fontWeight: FontWeight.w500,
                             color: Color(0xFF939393),
                           ),
                         ),
@@ -784,7 +706,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     );
   }
 
-  // 인력 구인 탭 내용
   Widget buildRecruitmentTab() {
     return CustomScrollView(
       slivers: [
@@ -850,7 +771,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => DescriptionPage()), // Navigate to description_page.dart
+                          MaterialPageRoute(builder: (context) => DescriptionPage()),
                         );
                       },
                       child: Container(
@@ -869,7 +790,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Junction Asia 2024',
+                                'Junction Asia 2024 같이 나갈 사람',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -885,9 +806,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 ),
                               ),
                               Spacer(),
-                              Column( // Text와 원들이 세로로 쌓이도록 변경
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [ // Text와 원 사이의 간격
+                                children: [
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -899,18 +820,18 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                             TextSpan(
                                               children: [
                                                 TextSpan(
-                                                  text: '인원', // "인원" 텍스트
+                                                  text: '모집인원',
                                                   style: TextStyle(
-                                                    color: Colors.black, // 검은색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w800,
                                                     fontSize: 12,
                                                   ),
                                                 ),
                                                 TextSpan(
-                                                  text: ' 4~6', // "4~6" 텍스트
+                                                  text: ' 3',
                                                   style: TextStyle(
-                                                    color: Colors.pinkAccent, // 핑크색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
+                                                    color: Colors.pinkAccent,
+                                                    fontWeight: FontWeight.w800,
                                                     fontSize: 12,
                                                   ),
                                                 ),
@@ -923,9 +844,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
-                                          _buildTag('개발'), // "개발" 태그
-                                          _buildTag('디자인'), // "디자인" 태그
-                                          _buildTag('기획'), // "기획" 태그
+                                          _buildTag('개발'),
+                                          _buildTag('디자인'),
+                                          _buildTag('기획'),
                                         ],
                                       ),
                                     ],
@@ -959,7 +880,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => DescriptionPage()), // Navigate to description_page.dart
+                          MaterialPageRoute(builder: (context) => DescriptionPage()),
                         );
                       },
                       child: Container(
@@ -978,7 +899,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Junction Asia 2024',
+                                'Junction Asia 2024 같이 나갈 사람',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -994,9 +915,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 ),
                               ),
                               Spacer(),
-                              Column( // Text와 원들이 세로로 쌓이도록 변경
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [ // Text와 원 사이의 간격
+                                children: [
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -1008,18 +929,18 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                             TextSpan(
                                               children: [
                                                 TextSpan(
-                                                  text: '인원', // "인원" 텍스트
+                                                  text: '모집인원',
                                                   style: TextStyle(
-                                                    color: Colors.black, // 검은색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w800,
                                                     fontSize: 12,
                                                   ),
                                                 ),
                                                 TextSpan(
-                                                  text: ' 4~6', // "4~6" 텍스트
+                                                  text: ' 3',
                                                   style: TextStyle(
-                                                    color: Colors.pinkAccent, // 핑크색
-                                                    fontWeight: FontWeight.w800, // ExtraBold
+                                                    color: Colors.pinkAccent,
+                                                    fontWeight: FontWeight.w800,
                                                     fontSize: 12,
                                                   ),
                                                 ),
