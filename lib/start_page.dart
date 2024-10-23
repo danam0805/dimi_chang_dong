@@ -2,29 +2,52 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-class StartPage extends StatelessWidget {
+class StartPage extends StatefulWidget {
+  @override
+  _StartPageState createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
+  bool _showWhitePage = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 5), () {
+      setState(() {
+        _showWhitePage = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Set a timer to navigate to the Main Page after 5 seconds
-    Timer(Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => MainPage()), // Navigates to MainPage in main.dart
+    if (_showWhitePage) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MainPage()),
+              );
+            },
+            child: Text('홈으로 고!'),
+          ),
+        ),
       );
-    });
+    }
 
-    // Scaffold for StartPage
     return Scaffold(
-      backgroundColor: Color(0xFFF4F4F4), // Background color f4f4f4
+      backgroundColor: Color(0xFFF4F4F4),
       body: Center(
         child: Image.asset(
-          'img/logo.png', // Display logo.png from img folder
-          width: 200, // Adjust the size if needed
+          'img/logo.png',
+          width: 200,
           height: 200,
         ),
       ),
     );
   }
 }
-
-

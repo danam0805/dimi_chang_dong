@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'description_page.dart';
-import 'writing_page.dart';
-import 'profile_page.dart';
+import 'start_page.dart';
 
 
 void main() {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      home: StartPage(),
     );
   }
 }
@@ -30,11 +29,23 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController();
   late TabController _tabController;
+  bool _showAppBar = true;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+
+    // TabBarView에서 현재 선택된 탭의 인덱스에 따라 앱바를 숨기거나 보이는 로직 추가
+    _tabController.addListener(() {
+      setState(() {
+        if (_tabController.index == 2 || _tabController.index == 3) {
+          _showAppBar = false;  // WritingTab 또는 ProfileTab에서는 앱바를 숨김
+        } else {
+          _showAppBar = true;   // 다른 탭에서는 앱바를 표시
+        }
+      });
+    });
   }
 
   @override
@@ -47,14 +58,14 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
-      appBar: AppBar(
+      appBar: _showAppBar
+          ? AppBar(
         backgroundColor: Color(0xFFF4F4F4),
         title: Row(
           children: [
-
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
                 decoration: BoxDecoration(
                   color: Color(0xFFF4F4F4),
                   borderRadius: BorderRadius.circular(32.0),
@@ -83,7 +94,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Image.asset(
@@ -94,7 +104,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             ),
           ],
         ),
-      ),
+      )
+          : null,  // 앱바를 숨길 때 null로 처리
       body: TabBarView(
         controller: _tabController,
         children: [
@@ -146,6 +157,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     );
   }
 
+
+
   Widget _buildTag(String text) {
     return Container(
       margin: EdgeInsets.only(right: 8.0),
@@ -166,35 +179,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       ),
     );
   }
-
-  Widget buildWritingTab() {
-    return Scaffold(
-      body: Center(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => WritingPage()),
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-
-
-  Widget buildProfileTab() {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'This is the Profile Page',
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-
   Widget buildHomeTab() {
     return CustomScrollView(
       slivers: [
@@ -260,6 +244,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
+                            height: 1,
                           ),
                         ),
                       ],
@@ -300,7 +285,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 15.0, bottom: 21.0, right: 16.0, left: 16.0),
+                          padding: EdgeInsets.symmetric(vertical: 21.0, horizontal: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -309,6 +294,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
                               Text(
@@ -317,9 +303,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   color: Color(0xFF939393),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
-                              SizedBox(height: 2.0),
+                              SizedBox(height: 8.0),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -369,7 +356,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 15.0, bottom: 21.0, right: 16.0, left: 16.0),
+                          padding: EdgeInsets.symmetric(vertical: 21.0, horizontal: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -378,6 +365,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
                               Text(
@@ -386,9 +374,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   color: Color(0xFF939393),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
-                              SizedBox(height: 2.0),
+                              SizedBox(height: 8.0),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -532,6 +521,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
+                            height: 1,
                           ),
                         ),
                         SizedBox(height: 3),
@@ -541,6 +531,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: Color(0xFF939393),
+                            height: 1,
                           ),
                         ),
                         SizedBox(height: 6),
@@ -656,6 +647,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
+                            height: 1,
                           ),
                         ),
                         SizedBox(height: 3),
@@ -665,6 +657,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: Color(0xFF939393),
+                            height: 1,
                           ),
                         ),
                         SizedBox(height: 6),
@@ -745,6 +738,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
+                            height: 1,
                           ),
                         ),
                       ],
@@ -794,6 +788,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
                               Spacer(),
@@ -803,6 +798,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   color: Color(0xFF939393),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
                               Spacer(),
@@ -825,6 +821,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.w800,
                                                     fontSize: 12,
+                                                    height: 1,
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -833,6 +830,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                                     color: Colors.pinkAccent,
                                                     fontWeight: FontWeight.w800,
                                                     fontSize: 12,
+                                                    height: 1,
                                                   ),
                                                 ),
                                               ],
@@ -840,7 +838,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 8),
+                                      SizedBox(height: 16),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
@@ -903,6 +901,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
                               Spacer(),
@@ -912,6 +911,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   color: Color(0xFF939393),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  height: 1,
                                 ),
                               ),
                               Spacer(),
@@ -934,6 +934,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.w800,
                                                     fontSize: 12,
+                                                    height: 1,
                                                   ),
                                                 ),
                                                 TextSpan(
@@ -942,6 +943,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                                     color: Colors.pinkAccent,
                                                     fontWeight: FontWeight.w800,
                                                     fontSize: 12,
+                                                    height: 1,
                                                   ),
                                                 ),
                                               ],
@@ -949,13 +951,13 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 8),
+                                      SizedBox(height: 16),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
-                                          _buildTag('개발'), // "개발" 태그
-                                          _buildTag('디자인'), // "디자인" 태그
-                                          _buildTag('기획'), // "기획" 태그
+                                          _buildTag('개발'),
+                                          _buildTag('디자인'),
+                                          _buildTag('기획'),
                                         ],
                                       ),
                                     ],
@@ -974,6 +976,28 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           ),
         ),
       ],
+    );
+  }
+
+  Widget buildWritingTab() {
+    return Scaffold(
+      body: Center(
+        child: Text(
+          'This is the Profile Page',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+
+  Widget buildProfileTab() {
+    return Scaffold(
+      body: Center(
+        child: Text(
+          'This is the Profile Page',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
     );
   }
 }

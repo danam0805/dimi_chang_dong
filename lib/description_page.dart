@@ -30,19 +30,20 @@ class DescriptionPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 62.5),
               Text(
                 'JUNCTION AISA 2024',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w800,
+                  height: 1,
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 7),
+              SizedBox(height: 13),
               Text(
                 '2024/7/9 ~ 2024/7/30',
-                style: TextStyle(fontSize: 16, color: Color(0xFF7F7F7F), fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 16, color: Color(0xFF7F7F7F), fontWeight: FontWeight.w500, height: 1),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 13),
