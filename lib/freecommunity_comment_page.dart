@@ -8,15 +8,14 @@ class FreeCommunityCommentPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Back button at the top of the body
             Padding(
               padding: const EdgeInsets.only(left: 4.0, top: 54,bottom: 6),
               child: Row(
                 children: [
                   TextButton(
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero, // Removes internal padding
-                      minimumSize: Size(0, 0), // Sets a minimum size for the button
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size(0, 0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -49,8 +48,13 @@ class FreeCommunityCommentPage extends StatelessWidget {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Color(0xFF939393),
+                            backgroundColor: Colors.grey[300],
                             radius: 26,
+                            child: Icon(
+                              Icons.person,
+                              size: 30,
+                              color: Colors.grey[700],
+                            ),
                           ),
                           SizedBox(width: 5),
                           Text(
@@ -123,7 +127,7 @@ class FreeCommunityCommentPage extends StatelessWidget {
               ),
             ),
             Column(
-              children: List.generate(6, (index) => buildCommentContainer()), // Create 3 comment containers
+              children: List.generate(6, (index) => buildCommentContainer()),
             ),
           ],
         ),
@@ -135,8 +139,13 @@ class FreeCommunityCommentPage extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xFF939393),
+                backgroundColor: Colors.grey[300],
                 radius: 26,
+                child: Icon(
+                  Icons.person,
+                  size: 30,
+                  color: Colors.grey[700],
+                ),
               ),
               SizedBox(width: 8),
               Expanded(
@@ -170,7 +179,6 @@ class FreeCommunityCommentPage extends StatelessWidget {
                   height: 41,
                 ),
                 onPressed: () {
-                  // Implement send functionality
                 },
               ),
             ],
@@ -197,8 +205,13 @@ class FreeCommunityCommentPage extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Color(0xFF939393),
+                  backgroundColor: Colors.grey[300],
                   radius: 26,
+                  child: Icon(
+                    Icons.person,
+                    size: 30,
+                    color: Colors.grey[700],
+                  ),
                 ),
                 SizedBox(width: 5),
                 Text(
@@ -221,7 +234,7 @@ class FreeCommunityCommentPage extends StatelessWidget {
             ),
             SizedBox(height: 13),
             Text(
-              '응 아니야',
+              '저요!!',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

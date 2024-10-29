@@ -49,8 +49,13 @@ class KnowledgesharingCommentPage extends StatelessWidget {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Color(0xFF939393),
+                            backgroundColor: Colors.grey[300],
                             radius: 26,
+                            child: Icon(
+                              Icons.person,
+                              size: 30,
+                              color: Colors.grey[700],
+                            ),
                           ),
                           SizedBox(width: 5),
                           Text(
@@ -123,7 +128,7 @@ class KnowledgesharingCommentPage extends StatelessWidget {
               ),
             ),
             Column(
-              children: List.generate(6, (index) => buildCommentContainer()), // Create 3 comment containers
+              children: List.generate(6, (index) => buildCommentContainer()),
             ),
           ],
         ),
@@ -135,8 +140,13 @@ class KnowledgesharingCommentPage extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xFF939393),
+                backgroundColor: Colors.grey[300],
                 radius: 26,
+                child: Icon(
+                  Icons.person,
+                  size: 30,
+                  color: Colors.grey[700],
+                ),
               ),
               SizedBox(width: 8),
               Expanded(
@@ -170,7 +180,6 @@ class KnowledgesharingCommentPage extends StatelessWidget {
                   height: 41,
                 ),
                 onPressed: () {
-                  // Implement send functionality
                 },
               ),
             ],
@@ -197,8 +206,13 @@ class KnowledgesharingCommentPage extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Color(0xFF939393),
+                  backgroundColor: Colors.grey[300],
                   radius: 26,
+                  child: Icon(
+                    Icons.person,
+                    size: 30,
+                    color: Colors.grey[700],
+                  ),
                 ),
                 SizedBox(width: 5),
                 Text(
@@ -221,7 +235,7 @@ class KnowledgesharingCommentPage extends StatelessWidget {
             ),
             SizedBox(height: 13),
             Text(
-              '그런거도 못하면 걍 접으세요 ㅉㅉ',
+              '그거 reducer에 스토어 대신 state 지정하면 됩니다',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
