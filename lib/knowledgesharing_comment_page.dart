@@ -8,15 +8,14 @@ class KnowledgesharingCommentPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Back button at the top of the body
             Padding(
               padding: const EdgeInsets.only(left: 4.0, top: 54,bottom: 6),
               child: Row(
                 children: [
                   TextButton(
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero, // Removes internal padding
-                      minimumSize: Size(0, 0), // Sets a minimum size for the button
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size(0, 0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
