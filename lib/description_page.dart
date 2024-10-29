@@ -7,7 +7,7 @@ class DescriptionPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFF4F4F4),
+          backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios, color: Colors.black),
             onPressed: () {
@@ -17,7 +17,7 @@ class DescriptionPage extends StatelessWidget {
           elevation: 0,
         ),
         body: Container(
-          color: Color(0xFFF4F4F4),
+          color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -26,8 +26,11 @@ class DescriptionPage extends StatelessWidget {
                 width: 300,
                 height: 300,
                 decoration: BoxDecoration(
-                  color: Color(0xFF939393),
                   borderRadius: BorderRadius.circular(24),
+                  image: DecorationImage(
+                    image: AssetImage('img/Banner4.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               SizedBox(height: 62.5),
@@ -43,7 +46,12 @@ class DescriptionPage extends StatelessWidget {
               SizedBox(height: 13),
               Text(
                 '2024/7/9 ~ 2024/7/30',
-                style: TextStyle(fontSize: 16, color: Color(0xFF7F7F7F), fontWeight: FontWeight.w500, height: 1),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF7F7F7F),
+                  fontWeight: FontWeight.w500,
+                  height: 1,
+                ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 13),
@@ -82,7 +90,7 @@ class DescriptionPage extends StatelessWidget {
                     child: Text(
                       '대회정보',
                       style: TextStyle(
-                        fontWeight: FontWeight.w600, // Semi Bold
+                        fontWeight: FontWeight.w600,
                         fontSize: 22.0,
                       ),
                     ),
@@ -91,7 +99,7 @@ class DescriptionPage extends StatelessWidget {
                     child: Text(
                       'TIP',
                       style: TextStyle(
-                        fontWeight: FontWeight.w600, // Semi Bold
+                        fontWeight: FontWeight.w600,
                         fontSize: 22.0,
                       ),
                     ),
@@ -100,7 +108,7 @@ class DescriptionPage extends StatelessWidget {
                     child: Text(
                       '수상작',
                       style: TextStyle(
-                        fontWeight: FontWeight.w600, // Semi Bold
+                        fontWeight: FontWeight.w600,
                         fontSize: 22.0,
                       ),
                     ),
@@ -132,7 +140,6 @@ class DescriptionPage extends StatelessWidget {
         border: Border.all(color: Color(0xFF0044FF)),
         borderRadius: BorderRadius.circular(24),
       ),
-
       child: Text(
         text,
         style: TextStyle(

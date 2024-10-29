@@ -8,39 +8,21 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  bool _showWhitePage = false;
-
   @override
   void initState() {
     super.initState();
     Timer(Duration(seconds: 5), () {
-      setState(() {
-        _showWhitePage = true;
-      });
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_showWhitePage) {
-      return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => MainPage()),
-              );
-            },
-            child: Text('홈으로 고!'),
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
-      backgroundColor: Color(0xFFF4F4F4),
+      backgroundColor: Colors.white,
       body: Center(
         child: Image.asset(
           'img/logo.png',
